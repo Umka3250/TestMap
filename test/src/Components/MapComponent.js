@@ -10,9 +10,9 @@ function MapComponent() {
     const [viewport, setViewport] = useState({
         height: "30vw",
         width: "70vh",
-        latitude: -74,
-        longitude: 40,
-        zoom: 15,
+        latitude: 48.379433,
+        longitude: 31.16558,
+        zoom: 10,
         pitch: 45,
         bearing: -17.6,
     });
@@ -21,6 +21,7 @@ function MapComponent() {
         id: "3d-buildings",
         source: 'composite',
         'source-layer': 'building',
+        filter: ['==', 'extrude', 'true'],
         type: "fill-extrusion",
         layerOptions: {
             'source-layer': 'building',
@@ -49,11 +50,13 @@ function MapComponent() {
                 ],
             'fill-extrusion-opacity': .9
     }};
-  
+
     return (
         <Container>
             <hr/>
             <ReactMapGL
+                antialias={true}
+                doubleClickZoom={false}
                 mapboxApiAccessToken={TOKEN}
                 mapStyle="mapbox://styles/mapbox/light-v10"
                 {...viewport}
